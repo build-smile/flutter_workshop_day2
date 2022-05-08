@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_workshop/components/userForm.dart';
+import 'package:flutter_workshop/networks/userAPI.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -24,5 +25,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
-  register(String username, String password) {}
+  register(String username, String password) async {
+    UserAPI userAPI = UserAPI();
+    String msg = await userAPI.register(username: username, password: password);
+    SnackBar snackbar = SnackBar(content: Text(msg));
+    ScaffoldMessenger.of(context).showSnackBar(snackbar);
+    Navigator.pop(context);
+  }
 }
