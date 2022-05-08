@@ -34,5 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  login() {}
+  login(String username, String password) {
+    print('username: $username password: $password');
+  }
 }

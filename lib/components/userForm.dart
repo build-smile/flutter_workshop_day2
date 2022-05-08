@@ -6,11 +6,19 @@ class UserForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var _keyForm = GlobalKey<FormState>();
+    String username = '';
+    String password = '';
     return Form(
+      key: _keyForm,
       child: Column(
         children: [
           ListTile(
             title: TextFormField(
+              onSaved: (String? value) {
+                username = value!;
+              },
+              validator: _validateString,
               decoration: InputDecoration(
                 hintText: 'username',
                 labelText: 'username',
@@ -19,6 +27,11 @@ class UserForm extends StatelessWidget {
           ),
           ListTile(
             title: TextFormField(
+              onSaved: (String? value) {
+                password = value!;
+              },
+              obscureText: true,
+              validator: _validateString,
               decoration: InputDecoration(
                 hintText: 'password',
                 labelText: 'password',
@@ -27,12 +40,24 @@ class UserForm extends StatelessWidget {
           ),
           ListTile(
             title: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                if (_keyForm.currentState!.validate()) {
+                  _keyForm.currentState!.save();
+                  submit(username, password);
+                }
+              },
               child: Text('Login'),
             ),
           )
         ],
       ),
     );
+  }
+
+  String? _validateString(String? value) {
+    if (value == null || value == '') {
+      return 'Please fill data';
+    }
+    return null;
   }
 }
