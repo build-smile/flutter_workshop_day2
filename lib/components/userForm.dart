@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 
 class UserForm extends StatelessWidget {
   final Function submit;
-  const UserForm({Key? key, required this.submit}) : super(key: key);
+  final String textButton;
+  const UserForm({
+    Key? key,
+    required this.submit,
+    required this.textButton,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +51,7 @@ class UserForm extends StatelessWidget {
                   submit(username, password);
                 }
               },
-              child: Text('Login'),
+              child: Text(textButton),
             ),
           )
         ],
