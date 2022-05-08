@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_workshop/pages/addForm.dart';
 import 'package:flutter_workshop/pages/home.dart';
 import 'package:flutter_workshop/pages/login.dart';
 import 'package:flutter_workshop/pages/register.dart';
@@ -15,7 +16,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       routes: {
         '/register': (context) => RegisterScreen(),
-        '/home': (context) => HomeScreen()
+        '/home': (context) => HomeScreen(),
+        '/addform': (context) => AddForm()
       },
       home: LoginScreen(),
     );

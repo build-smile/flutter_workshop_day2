@@ -39,13 +39,13 @@ class UserAPI {
     return null;
   }
 
-  storeToken({required String token}) async {
+  Future<bool> storeToken({required String token}) async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('token', token);
+    return await prefs.setString('token', token);
   }
 
   Future<String?> getToken() async {
     final prefs = await SharedPreferences.getInstance();
-    return await prefs.getString('token');
+    return prefs.getString('token');
   }
 }

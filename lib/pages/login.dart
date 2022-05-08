@@ -3,6 +3,8 @@ import 'package:flutter_workshop/components/userForm.dart';
 import 'package:flutter_workshop/models/login.dart';
 import 'package:flutter_workshop/networks/userAPI.dart';
 
+import '../config.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -47,7 +49,9 @@ class _LoginScreenState extends State<LoginScreen> {
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
       return;
     }
-    userAPI.storeToken(token: login.accessToken);
+    //userAPI.storeToken(token: login.accessToken);
+    TOKEN = login.accessToken;
+    print(TOKEN);
     Navigator.pushNamed(context, '/home');
     SnackBar snackBar = SnackBar(content: Text('Welcome to MyApp'));
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
