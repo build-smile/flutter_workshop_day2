@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_workshop/components/userForm.dart';
+import 'package:flutter_workshop/models/login.dart';
+import 'package:flutter_workshop/networks/userAPI.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -37,7 +39,17 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  login(String username, String password) {
-    print('username: $username password: $password');
+  login(String username, String password) async {
+    UserAPI userAPI = UserAPI();
+    Login? login = await userAPI.login(username: username, password: password);
+    if (login == null) {
+      SnackBar snackBar = SnackBar(content: Text('Invalid user'));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      return;
+    }
+    userAPI.storeToken(token: login.accessToken);
+    Navigator.pushNamed(context, '/home');
+    SnackBar snackBar = SnackBar(content: Text('Welcome to MyApp'));
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }
