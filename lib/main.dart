@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_workshop/pages/addForm.dart';
+import 'package:flutter_workshop/pages/editForm.dart';
 import 'package:flutter_workshop/pages/home.dart';
 import 'package:flutter_workshop/pages/login.dart';
 import 'package:flutter_workshop/pages/register.dart';
@@ -17,7 +18,9 @@ class MyApp extends StatelessWidget {
       routes: {
         '/register': (context) => RegisterScreen(),
         '/home': (context) => HomeScreen(),
-        '/addform': (context) => AddForm()
+        '/addform': (context) => AddForm(),
+        '/editform': (context) => EditForm(),
+        '/login': (context) => LoginScreen()
       },
       home: LoginScreen(),
     );

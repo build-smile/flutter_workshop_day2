@@ -24,6 +24,15 @@ class _StockListState extends State<StockList> {
                 itemCount: stocks!.length,
                 itemBuilder: (BuildContext context, int index) {
                   return ListTile(
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        '/editform',
+                        arguments: stocks[index],
+                      ).then((value) {
+                        setState(() {});
+                      });
+                    },
                     title: Text('${stocks[index]!.description}'),
                     subtitle: Text('stock :${stocks[index]!.stock}'),
                   );
@@ -36,7 +45,11 @@ class _StockListState extends State<StockList> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pushNamed(context, '/addform');
+          Navigator.pushNamed(context, '/addform').then((value) {
+            //run code when back
+            print('back');
+            setState(() {});
+          });
         },
         child: Icon(Icons.add),
       ),
